@@ -11,6 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.easysushi.R
 
+val BOTTOM_MENU_TEXT_SIZE = 12.sp
+
 @Composable
 fun BottomNavigationBar() {
     val items = setOf(
@@ -28,7 +30,7 @@ fun BottomNavigationBar() {
                     Icon(painter = painterResource(id = bottomItem.icon), contentDescription = bottomItem.title)
                 },
                 label = {
-                    Text(text = bottomItem.title, fontSize = 16.sp)
+                    Text(text = bottomItem.title, fontSize = BOTTOM_MENU_TEXT_SIZE)
                 },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.7f),

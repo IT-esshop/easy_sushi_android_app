@@ -64,11 +64,19 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
     // Retrofit
-    implementation 'com.google.code.gson:gson:2.9.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    def retrofit = "2.9.0"
+    implementation "com.google.code.gson:gson:$retrofit"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
     // Dagger-Hilt
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    def hilt = "2.44"
+    implementation "com.google.dagger:hilt-android:$hilt"
+    kapt "com.google.dagger:hilt-compiler:$hilt"
+
+    // Hilt-Compose
+    def hiltAndroidX = "1.0.0"
+    implementation "androidx.hilt:hilt-navigation-compose:$hiltAndroidX"
+    implementation "androidx.hilt:hilt-work:$hiltAndroidX"
+    kapt "androidx.hilt:hilt-compiler:$hiltAndroidX"
 }

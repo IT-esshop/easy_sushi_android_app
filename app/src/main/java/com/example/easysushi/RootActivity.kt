@@ -16,7 +16,7 @@ class RootActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EasySushiTheme {
-//                SplashScreen()  TODO(Подумать про splash screen)
+                SplashScreen()
                 MainScreen()
             }
         }
