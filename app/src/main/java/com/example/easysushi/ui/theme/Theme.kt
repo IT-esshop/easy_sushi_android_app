@@ -6,26 +6,16 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.example.easysushi.ui.theme.EasySushiColors.Green
 
 private val DarkColorPalette = darkColors(
     primary = Green,
-    primaryVariant = Color.White,
-    secondary = Teal200
+    primaryVariant = Color.White
 )
 
 private val LightColorPalette = lightColors(
     primary = Green,
-    primaryVariant = Purple700,
-    secondary = Teal200
-
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+    primaryVariant = Color.White
 )
 
 @Composable

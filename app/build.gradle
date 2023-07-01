@@ -79,4 +79,9 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:$hiltAndroidX"
     implementation "androidx.hilt:hilt-work:$hiltAndroidX"
     kapt "androidx.hilt:hilt-compiler:$hiltAndroidX"
+
+    // Navigation
+    def navigationCompose = "2.6.0"
+    implementation "androidx.navigation:navigation-compose:$navigationCompose"
+
 }

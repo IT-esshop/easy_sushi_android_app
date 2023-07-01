@@ -1,6 +1,8 @@
 package com.example.easysushi
 
-sealed class EasySushiScreen(val route: String) {
+import com.example.easysushi.ui.base.Screen
+
+sealed class EasySushiScreen(override val route: String): Screen(route) {
     object Splash : EasySushiScreen("splash")
     object Main : EasySushiScreen("main")
     object WaresList : EasySushiScreen("wares_list")

@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.easysushi.ui.MainScreen
+import com.example.easysushi.ui.RootScreen
 import com.example.easysushi.ui.theme.EasySushiTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,8 +17,7 @@ class RootActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EasySushiTheme {
-                SplashScreen()
-                MainScreen()
+                RootScreen()
             }
         }
     }

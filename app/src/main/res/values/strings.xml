@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">EasySushi</string>
+    <string name="wares_list_screen_title">Товары</string>
+    <string name="cart_screen_title">Корзина</string>
+    <string name="user_profile_screen_title">Профиль</string>
 </resources>
