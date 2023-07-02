@@ -81,14 +81,17 @@ fun MainScreen(
         NavHost(
             navController = localNavController,
             startDestination = EasySushiScreen.WaresList.route,
-//            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp)
         ) {
             composable(EasySushiScreen.WaresList.route) {
-                Log.d("MainScreen", "Go to wares screen")
                 WaresScreen()
             }
-            composable(EasySushiScreen.Cart.route) { CartScreen() }
-            composable(EasySushiScreen.UserProfile.route) { UserProfileScreen() }
+            composable(EasySushiScreen.Cart.route) {
+                CartScreen()
+            }
+            composable(EasySushiScreen.UserProfile.route) {
+                UserProfileScreen()
+            }
         }
     }
 }
