@@ -1,4 +1,4 @@
-package com.example.easysushi.userprofile
+package com.example.easysushi.ui.userprofile
 
 import androidx.compose.runtime.Composable
 import com.example.easysushi.ui.base.StubScreen

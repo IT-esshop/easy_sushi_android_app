@@ -30,7 +30,7 @@ import com.example.easysushi.ui.base.BottomNavigationBar
 import com.example.easysushi.ui.base.NavigationItemData
 import com.example.easysushi.ui.cart.CartScreen
 import com.example.easysushi.ui.wareslist.WaresScreen
-import com.example.easysushi.userprofile.UserProfileScreen
+import com.example.easysushi.ui.userprofile.UserProfileScreen
 import kotlinx.coroutines.handleCoroutineException
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
