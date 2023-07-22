@@ -75,7 +75,6 @@ fun MainScreen(
         NavHost(
             navController = localNavController,
             startDestination = EasySushiScreen.WaresList.route,
-            modifier = Modifier.padding(16.dp)
         ) {
             composable(EasySushiScreen.WaresList.route) {
                 WaresScreen()
