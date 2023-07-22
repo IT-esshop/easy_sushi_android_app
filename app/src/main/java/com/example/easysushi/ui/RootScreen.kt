@@ -28,9 +28,6 @@ fun RootScreen() {
         ) {
             composable(EasySushiScreen.Splash.route) { SplashScreen() }
             composable(EasySushiScreen.Main.route) { MainScreen() }
-//            composable(EasySushiScreen.WaresList.route) { WaresScreen() }
-//            composable(EasySushiScreen.Cart.route) { CartScreen() }
-//            composable(EasySushiScreen.UserProfile.route) { UserProfileScreen() }
         }
     }
 }

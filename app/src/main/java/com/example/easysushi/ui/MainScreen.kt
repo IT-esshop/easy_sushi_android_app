@@ -29,6 +29,7 @@ import com.example.easysushi.R
 import com.example.easysushi.ui.base.BottomNavigationBar
 import com.example.easysushi.ui.base.NavigationItemData
 import com.example.easysushi.ui.cart.CartScreen
+import com.example.easysushi.ui.maps.MapsScreen
 import com.example.easysushi.ui.wareslist.WaresScreen
 import com.example.easysushi.userprofile.UserProfileScreen
 import kotlinx.coroutines.handleCoroutineException
@@ -39,22 +40,10 @@ fun MainScreen(
     viewModel: MainViewModel = hiltViewModel()
 ) {
     val localNavController = rememberNavController()
-    val screenTitle = viewModel.screenTitle.value
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         backgroundColor = Color.Transparent,
-//        topBar = {
-//            TopAppBar(
-//                title = {
-//                    Text(text = screenTitle)
-//                },
-//                navigationIcon = {
-//                    IconButton(onClick = {}) {
-//                        Icon(Icons.Filled.Menu, contentDescription = null)
-//                    }
-//                }
-//            )
-//        },
         bottomBar = {
             BottomNavigationBar(
                 navController = localNavController,
@@ -74,6 +63,11 @@ fun MainScreen(
                         route = EasySushiScreen.UserProfile.route,
                         title = stringResource(id = R.string.user_profile_screen_title)
                     ),
+                    NavigationItemData(
+                        icon = R.drawable.icon_maps,
+                        route = EasySushiScreen.Maps.route,
+                        title = stringResource(id = R.string.maps_screen_title)
+                    ),
                 )
             )
         }
@@ -91,6 +85,9 @@ fun MainScreen(
             }
             composable(EasySushiScreen.UserProfile.route) {
                 UserProfileScreen()
+            }
+            composable(EasySushiScreen.Maps.route) {
+                MapsScreen()
             }
         }
     }
