@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'com.example.easysushi'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.easysushi"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -59,7 +59,6 @@ dependencies {
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
     implementation 'androidx.compose.material:material:1.4.3'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
@@ -83,5 +82,9 @@ dependencies {
     // Navigation
     def navigationCompose = "2.6.0"
     implementation "androidx.navigation:navigation-compose:$navigationCompose"
+
+    // WorkManager
+    def workManager = "2.8.1"
+    implementation "androidx.work:work-runtime:2.8.1"
 
 }
