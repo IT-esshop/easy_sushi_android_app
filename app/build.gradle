@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         compose true
+        viewBinding true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.3'
@@ -87,4 +88,11 @@ dependencies {
     def workManager = "2.8.1"
     implementation "androidx.work:work-runtime:2.8.1"
 
+    // Yandex Map-Kit
+    def yandexMapkit = "4.3.1"
+    implementation "com.yandex.android:maps.mobile:$yandexMapkit-lite"
+
+    // Android ViewBinding
+    def viewBinding = "1.4.3"
+    implementation "androidx.compose.ui:ui-viewbinding:$viewBinding"
 }
