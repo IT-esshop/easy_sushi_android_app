@@ -14,12 +14,13 @@ import javax.inject.Inject
 @HiltViewModel
 class WaresViewModel @Inject constructor(
     useCase: GetAllWaresUseCase
-): ViewModel() {
+) : ViewModel() {
+
+    private val _ware = MutableStateFlow(listOf<Ware>())
+    val ware = _ware.asStateFlow()
 
     init {
         Log.d("WaresViewModel", "Init WaresViewModel")
+        _ware.value = useCase.invoke()
     }
-
-    private val _ware = MutableStateFlow(useCase.invoke()[0])
-    val ware = _ware.asStateFlow()
 }
