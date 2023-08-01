@@ -7,6 +7,7 @@ object EasySushiColors {
     val Green = Color(0xFF41CC89)
     val lightGray = Color(0xFFD2D2D2)
     val Gray = Color(0xFFC8C8C8)
+    val Gray100 = Color(0xFFB6B6B6)
 
     // Button colors
     val LightYellow = Color(0xFFFFF6AB)

@@ -23,7 +23,7 @@ class SplashViewModel @Inject constructor(): ViewModel() {
 
     private fun stopSplash() {
         viewModelScope.launch {
-            delay(SPLASH_SCREEN_DEFAULT_DELAY) // TODO Позже прикрутить загрузку данных во время сплеша
+//            delay(SPLASH_SCREEN_DEFAULT_DELAY) // TODO Позже прикрутить загрузку данных во время сплеша
             showSplash.value = false
         }
     }

@@ -9,5 +9,10 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun StubScreen(text: String = "В разработке") {
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text(text = text) }
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text = text)
+    }
 }
