@@ -9,10 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.easysushi.EasySushiScreen
-import com.example.easysushi.ui.cart.CartScreen
 import com.example.easysushi.ui.splash.SplashScreen
-import com.example.easysushi.ui.wareslist.WaresScreen
-import com.example.easysushi.userprofile.UserProfileScreen
 
 var LocalRootNavController: ProvidableCompositionLocal<NavHostController> =
     compositionLocalOf { error("Activity is not created") }
