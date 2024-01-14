@@ -1,20 +1,26 @@
 package com.example.easysushi.ui.wareslist
 
-import androidx.compose.runtime.mutableStateOf
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.easysushi.domain.model.Ware
-import com.example.easysushi.domain.repository.WaresRepository
+import com.example.easysushi.domain.usecases.GetAllWaresUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
 class WaresViewModel @Inject constructor(
-    private val waresRepository: WaresRepository
-): ViewModel() {
+    useCase: GetAllWaresUseCase
+) : ViewModel() {
 
-    val wares = mutableStateOf<List<Ware>>(emptyList())
+    private val _ware = MutableStateFlow(listOf<Ware>())
+    val ware = _ware.asStateFlow()
 
     init {
-        waresRepository.getAllWares()
+        Log.d("WaresViewModel", "Init WaresViewModel")
+        _ware.value = useCase.invoke()
     }
 }

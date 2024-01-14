@@ -8,4 +8,5 @@ sealed class EasySushiScreen(override val route: String): Screen(route) {
     object WaresList : EasySushiScreen("wares_list")
     object Cart : EasySushiScreen("cart")
     object UserProfile : EasySushiScreen("user_profile")
+    object Maps : EasySushiScreen("maps")
 }

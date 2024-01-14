@@ -3,4 +3,10 @@
     <string name="wares_list_screen_title">Товары</string>
     <string name="cart_screen_title">Корзина</string>
     <string name="user_profile_screen_title">Профиль</string>
+    <string name="maps_screen_title">Карта</string>
+    <string name="bonus_program_status_title_none">Гость</string>
+    <string name="bonus_program_status_title_start">Клиент</string>
+    <string name="bonus_program_status_title_medium">Гурман</string>
+    <string name="bonus_program_status_title_pro">Обжора</string>
+    <string name="user_profile_orders_quantity">Всего сделано заказов: %s</string>
 </resources>
