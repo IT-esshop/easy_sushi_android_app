@@ -84,4 +84,8 @@ dependencies {
     def navigationCompose = "2.6.0"
     implementation "androidx.navigation:navigation-compose:$navigationCompose"
 
+    // Mvi-orbit
+    def mviOrbit = "4.5.0"
+    implementation "org.orbit-mvi:orbit-viewmodel:$mviOrbit"
+    implementation "org.orbit-mvi:orbit-compose:$mviOrbit"
 }

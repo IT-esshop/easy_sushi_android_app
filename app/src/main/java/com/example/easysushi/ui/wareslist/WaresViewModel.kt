@@ -1,6 +1,5 @@
 package com.example.easysushi.ui.wareslist
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.easysushi.domain.model.Ware

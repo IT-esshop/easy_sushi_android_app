@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,13 +25,16 @@ private const val WARE_LIST_COLUMNS_QUANTITY = 2
 fun WaresScreen(
     viewModel: WaresViewModel = hiltViewModel()
 ) {
+    val wares by viewModel.wares
     Surface {
         LazyVerticalGrid(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(16.dp),
             columns = GridCells.Fixed(WARE_LIST_COLUMNS_QUANTITY)
         ) {
-            items()
+            items(10) {
+                wares
+            }
         }
     }
 }

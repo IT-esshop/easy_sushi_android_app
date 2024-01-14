@@ -15,3 +15,7 @@ h
 8app/src/main/java/com/example/easysushi/ui/MainScreen.kt,4\a\4a4ac884ab19f981fa283dbef28f9b02069c5976
 s
 Capp/src/main/java/com/example/easysushi/data/remote/EasySushiApi.kt,f\8\f86135f3ca798a9a905ece963d20663ff4ae8bf2
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+{
+Kapp/src/main/java/com/example/easysushi/ui/userprofile/UserProfileScreen.kt,a\0\a0599609d0a8f089423007651b28d17d21a4c602
