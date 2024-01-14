@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface WaresRepository {
 
-    fun getAllWares(): Flow<List<Ware>>
+    fun getAllWares(): List<Ware>
 }

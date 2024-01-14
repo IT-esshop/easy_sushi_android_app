@@ -11,25 +11,25 @@ import javax.inject.Inject
 
 class WaresRepositoryImpl @Inject constructor() : WaresRepository {
 
-    override fun getAllWares(): Flow<List<Ware>> {
-        return flow {
-            repeat(10) {
-                listOf(
-                    Ware(
-                        id = 0,
-                        name = "Филадельфия",
-                        wareCategory = WareCategory.ROLLS,
-                        price = 169,
-                        composition = "Лосось, сливочный сыр, огурец",
-                        weight = 185,
-                        kcal = 238,
-                        protein = 7,
-                        fat = 10,
-                        carbohydrates = 30,
-                        imageUrl = "https://www.sushieasy.ru/assets/images/cache/docs/24417/roll_filadelfiya_sfs.png/1655973419/320.png"
-                    ),
+    override fun getAllWares(): List<Ware> {
+        val wareList = mutableListOf<Ware>()
+        repeat(10) {
+            wareList.add(
+                Ware(
+                    id = 0,
+                    name = "Филадельфия",
+                    wareCategory = WareCategory.ROLLS,
+                    price = 169,
+                    composition = "Лосось, сливочный сыр, огурец",
+                    weight = 185,
+                    kcal = 238,
+                    protein = 7,
+                    fat = 10,
+                    carbohydrates = 30,
+                    imageUrl = "https://www.sushieasy.ru/assets/images/cache/docs/24417/roll_filadelfiya_sfs.png/1655973419/320.png"
                 )
-            }
+            )
         }
+        return wareList
     }
 }
