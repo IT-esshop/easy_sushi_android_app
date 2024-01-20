@@ -82,7 +82,9 @@ private fun ItemWare(ware: Ware) {
 
         elevation = 10.dp
     ) {
-        Column {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             AsyncImage(
                 modifier = Modifier
                     .padding(5.dp)
@@ -96,25 +98,31 @@ private fun ItemWare(ware: Ware) {
                 text = ware.name,
                 color = Color.Black,
             )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Bottom
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
             ) {
-                Text(
-                    modifier = Modifier
-                        .padding(start = 5.dp, bottom = 5.dp),
-                    text = "${ware.price} ₽",
-                    fontSize = 25.sp,
-                    color = Color.Green
-                )
-                Button(
-                    modifier = Modifier
-                        .padding(end = 5.dp, bottom = 5.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    onClick = { /*TODO*/ }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "BUY", fontWeight = FontWeight.Bold)
+                    Text(
+                        text = "${ware.price} ₽",
+                        fontSize = 25.sp,
+                        color = Color.Green
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text(text = "${ware.weight} г.", fontSize = 20.sp)
+                }
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Button(
+                        shape = RoundedCornerShape(20.dp),
+                        onClick = { /*TODO*/ }
+                    ) {
+                        Text(text = "В корзину", fontWeight = FontWeight.Bold)
+                    }
                 }
             }
         }
