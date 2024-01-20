@@ -9,4 +9,6 @@
     <string name="bonus_program_status_title_medium">Гурман</string>
     <string name="bonus_program_status_title_pro">Обжора</string>
     <string name="user_profile_orders_quantity">Всего сделано заказов: %s</string>
+    <string name="loading">Загрузка…</string>
+    <string name="wares_loading">Загружаем товары…</string>
 </resources>

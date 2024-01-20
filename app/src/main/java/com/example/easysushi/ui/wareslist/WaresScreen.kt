@@ -1,8 +1,6 @@
 package com.example.easysushi.ui.wareslist
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -13,64 +11,50 @@ import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.example.easysushi.core.UiComponent
+import com.example.easysushi.core.EasySpinner
+import com.example.easysushi.core.LoaderState
 import com.example.easysushi.domain.model.Ware
 import com.example.easysushi.domain.model.WareCategory
-import org.orbitmvi.orbit.compose.collectAsState
-import org.orbitmvi.orbit.compose.collectSideEffect
-import kotlin.random.Random
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun WaresScreen(
     viewModel: WaresViewModel = hiltViewModel()
 ) {
-    val state by viewModel.collectAsState()
-    val context = LocalContext.current
+    val waresList by viewModel.waresList.collectAsState()
+    val loaderState = viewModel.loaderState.collectAsState()
 
-    WaresScreenContent(state)
-
-    viewModel.collectSideEffect { uiComponent ->
-        when (uiComponent) {
-            is UiComponent.Toast -> {
-                Toast.makeText(context, uiComponent.text, Toast.LENGTH_SHORT).show()
-            }
-
-            else -> {}
-        }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        EasySpinner(state = loaderState.value)
     }
+
+    WaresScreenContent(waresList)
 }
 
 @Composable
 private fun WaresScreenContent(
-    state: WaresState
+    waresList: List<Ware>
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2)
     ) {
-        items(state.wares) {
-            ItemWare(ware = it)
+        items(waresList) { ware ->
+            ItemWare(ware = ware)
         }
     }
 
-    if (state.progressBar) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
-        }
-    }
 }
 
 @Composable
@@ -114,7 +98,11 @@ private fun ItemWare(ware: Ware) {
                         color = Color.Green
                     )
                     Spacer(modifier = Modifier.width(16.dp))
-                    Text(text = "${ware.weight} г.", fontSize = 20.sp)
+                    Text(
+                        text = "${ware.weight} г.",
+                        fontSize = 20.sp,
+                        color = Color.Black
+                    )
                 }
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Button(
@@ -149,9 +137,5 @@ fun WaresScreenPreview() {
     repeat(20) {
         waresList.add(exampleWare)
     }
-    WaresScreenContent(
-        state = WaresState(
-            wares = waresList
-        )
-    )
+    WaresScreenContent(waresList)
 }

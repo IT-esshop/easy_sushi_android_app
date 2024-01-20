@@ -1,54 +1,44 @@
 package com.example.easysushi.ui.wareslist
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.easysushi.core.DataState
-import com.example.easysushi.core.UiComponent
-import com.example.easysushi.domain.usecases.GetAllWaresUseCase
+import com.example.easysushi.core.BaseViewModel
+import com.example.easysushi.core.LoaderState
+import com.example.easysushi.domain.model.Ware
+import com.example.easysushi.domain.repository.WaresRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import org.orbitmvi.orbit.Container
-import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.syntax.simple.intent
-import org.orbitmvi.orbit.syntax.simple.postSideEffect
-import org.orbitmvi.orbit.syntax.simple.reduce
-import org.orbitmvi.orbit.viewmodel.container
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class WaresViewModel @Inject constructor(
-    private val getAllWares: GetAllWaresUseCase
-) : ViewModel(), ContainerHost<WaresState, UiComponent> {
+    private val waresRepository: WaresRepository,
+) : BaseViewModel() {
 
-    override val container: Container<WaresState, UiComponent> = container(WaresState())
+    private val _waresList = MutableStateFlow(emptyList<Ware>())
+    val waresList: StateFlow<List<Ware>>
+        get() = _waresList
 
     init {
-        getWaresList()
+        viewModelScope.launch {
+            loaderState.value = LoaderState.WARES_LOADING
+            delay(3000)
+            _waresList.value = getWaresList()
+            loaderState.value = LoaderState.DISABLE
+        }
     }
 
-    private fun getWaresList() {
-        intent {
-            getAllWares.execute().onEach { dataState ->
-                when (dataState) {
-                    is DataState.Loading -> {
-                        reduce { state.copy(progressBar = dataState.isLoading) }
-                    }
+    private fun getWaresList(): List<Ware> {
+        return waresRepository.getAllWares()
+    }
 
-                    is DataState.Error -> {
-                        when (dataState.uiComponent) {
-                            is UiComponent.Toast -> {
-                                postSideEffect(UiComponent.Toast(dataState.uiComponent.text))
-                            }
-                            else -> {}
-                        }
-                    }
+    fun onAddToCartClick(wareId: Long) {
+        waresRepository.getWareById(wareId)?.let { ware ->
+            if (ware.quantityInCart > 0) {
 
-                    is DataState.Success -> {
-                        reduce { state.copy(wares = dataState.data) }
-                    }
-                }
-            }.launchIn(viewModelScope)
+            }
         }
     }
 }

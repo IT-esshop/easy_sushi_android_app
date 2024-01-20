@@ -12,4 +12,5 @@ data class Ware(
     val fat: Int,
     val carbohydrates: Int,
     val imageUrl: String,
+    val quantityInCart: Int = 0 // Todo Создать БД для корзины в будущем
 )

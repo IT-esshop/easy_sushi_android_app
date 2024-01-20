@@ -13,10 +13,10 @@ class WaresRepositoryImpl @Inject constructor() : WaresRepository {
 
     override fun getAllWares(): List<Ware> {
         val wareList = mutableListOf<Ware>()
-        repeat(10) {
+        repeat(10) { index ->
             wareList.add(
                 Ware(
-                    id = 0,
+                    id = index.toLong(),
                     name = "Филадельфия",
                     wareCategory = WareCategory.ROLLS,
                     price = 169,
@@ -32,4 +32,7 @@ class WaresRepositoryImpl @Inject constructor() : WaresRepository {
         }
         return wareList
     }
+
+    override fun getWareById(wareId: Long): Ware? =
+        getAllWares().firstOrNull { ware -> ware.id == wareId }
 }
