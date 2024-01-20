@@ -1,6 +1,7 @@
 package com.example.easysushi.ui.wareslist
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,8 +28,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.easysushi.core.UiComponent
 import com.example.easysushi.domain.model.Ware
+import com.example.easysushi.domain.model.WareCategory
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
+import kotlin.random.Random
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -37,6 +41,23 @@ fun WaresScreen(
     val state by viewModel.collectAsState()
     val context = LocalContext.current
 
+    WaresScreenContent(state)
+
+    viewModel.collectSideEffect { uiComponent ->
+        when (uiComponent) {
+            is UiComponent.Toast -> {
+                Toast.makeText(context, uiComponent.text, Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {}
+        }
+    }
+}
+
+@Composable
+private fun WaresScreenContent(
+    state: WaresState
+) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2)
     ) {
@@ -50,21 +71,10 @@ fun WaresScreen(
             CircularProgressIndicator()
         }
     }
-
-    viewModel.collectSideEffect { uiComponent ->
-        when (uiComponent) {
-            is UiComponent.Toast -> {
-                Toast.makeText(context, uiComponent.text, Toast.LENGTH_SHORT).show()
-            }
-            else -> {}
-        }
-    }
-
-
 }
 
 @Composable
-fun ItemWare(ware: Ware) {
+private fun ItemWare(ware: Ware) {
     Card(
         modifier = Modifier
             .padding(5.dp)
@@ -111,8 +121,29 @@ fun ItemWare(ware: Ware) {
     }
 }
 
-@Preview
+@Preview()
 @Composable
 fun WaresScreenPreview() {
-    WaresScreen()
+    val waresList = mutableListOf<Ware>()
+    val exampleWare = Ware(
+        id = 1,
+        name = "Спайси тунец",
+        wareCategory = WareCategory.ROLLS,
+        price = 169,
+        composition = "Рис, водоросли Нори, шичими, сливочный сыр, омлет тамаго, тунец, соус Чили",
+        weight = 175,
+        kcal = 214,
+        protein = 9,
+        fat = 7,
+        carbohydrates = 29,
+        imageUrl = "https://www.sushieasy.ru/assets/images/cache/docs/103315/tartar.png/1685698217/320.png"
+    )
+    repeat(20) {
+        waresList.add(exampleWare)
+    }
+    WaresScreenContent(
+        state = WaresState(
+            wares = waresList
+        )
+    )
 }

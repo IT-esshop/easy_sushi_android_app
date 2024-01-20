@@ -3,20 +3,22 @@ package com.example.easysushi.domain.usecases
 import com.example.easysushi.UNKNOWN_ERROR
 import com.example.easysushi.core.DataState
 import com.example.easysushi.core.UiComponent
-import com.example.easysushi.domain.model.Ware
-import com.example.easysushi.domain.repository.WaresRepository
+import com.example.easysushi.domain.model.User
+import com.example.easysushi.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetAllWaresUseCase @Inject constructor(
-    private val repository: WaresRepository
+const val TEST_AUTHORIZED_USER_ID = 1L
+
+class GetUserByIdUseCase @Inject constructor(
+    private val repository: UserRepository
 ) {
-    fun execute(): Flow<DataState<List<Ware>>> {
+    operator fun invoke(): Flow<DataState<User>> {
         return flow {
             emit(DataState.Loading(true))
             try {
-                val wares = repository.getAllWares()
+                val wares = repository.getUserById(TEST_AUTHORIZED_USER_ID)
                 emit(DataState.Success(wares))
             } catch (e: Exception) {
                 e.printStackTrace()
