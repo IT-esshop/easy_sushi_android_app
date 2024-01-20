@@ -5,6 +5,7 @@ import com.example.easysushi.core.DataState
 import com.example.easysushi.core.UiComponent
 import com.example.easysushi.domain.model.Ware
 import com.example.easysushi.domain.repository.WaresRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -12,8 +13,7 @@ import javax.inject.Inject
 class GetAllWaresUseCase @Inject constructor(
     private val repository: WaresRepository
 ) {
-
-    operator fun invoke(): Flow<DataState<List<Ware>>> {
+    fun execute(): Flow<DataState<List<Ware>>> {
         return flow {
             emit(DataState.Loading(true))
             try {
