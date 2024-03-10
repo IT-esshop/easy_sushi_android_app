@@ -54,12 +54,12 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-    implementation 'androidx.activity:activity-compose:1.7.2'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+    implementation 'androidx.activity:activity-compose:1.8.2'
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
-    implementation 'androidx.compose.material:material:1.4.3'
+    implementation 'androidx.compose.material:material:1.6.3'
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
@@ -78,29 +78,20 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt"
 
     // Hilt-Compose
-    def hiltAndroidX = "1.0.0"
+    def hiltAndroidX = "1.2.0"
     implementation "androidx.hilt:hilt-navigation-compose:$hiltAndroidX"
     implementation "androidx.hilt:hilt-work:$hiltAndroidX"
     kapt "androidx.hilt:hilt-compiler:$hiltAndroidX"
 
     // Navigation
-    def navigationCompose = "2.6.0"
+    def navigationCompose = "2.7.7"
     implementation "androidx.navigation:navigation-compose:$navigationCompose"
-
-    // WorkManager
-    def workManager = "2.8.1"
-    implementation "androidx.work:work-runtime:2.8.1"
 
     // Yandex Map-Kit
     def yandexMapkit = "4.3.1"
     implementation "com.yandex.android:maps.mobile:$yandexMapkit-lite"
 
     // Android ViewBinding
-    def viewBinding = "1.4.3"
+    def viewBinding = "1.6.3"
     implementation "androidx.compose.ui:ui-viewbinding:$viewBinding"
-
-    // Mvi-orbit
-    def mviOrbit = "4.5.0"
-    implementation "org.orbit-mvi:orbit-viewmodel:$mviOrbit"
-    implementation "org.orbit-mvi:orbit-compose:$mviOrbit"
 }
