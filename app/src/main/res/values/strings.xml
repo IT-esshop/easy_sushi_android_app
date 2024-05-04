@@ -11,4 +11,8 @@
     <string name="user_profile_orders_quantity">Всего сделано заказов: %s</string>
     <string name="loading">Загрузка…</string>
     <string name="wares_loading">Загружаем товары…</string>
+    <string name="hello_username">Привет, %s</string>
+    <string name="we_wish_you_a_great_day">Желаем вам прекрасного дня</string>
+    <string name="active_points">Очки кэшбека</string>
+    <string name="activate_promo">Активировать</string>
 </resources>
