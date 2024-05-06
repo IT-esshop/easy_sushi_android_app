@@ -1,6 +1,12 @@
 package com.example.easysushi.ui.userprofile
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.scaleIn
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,13 +34,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.easysushi.R
@@ -74,11 +80,21 @@ fun UserBlock(
     user: User
 ) {
     Row(modifier = Modifier.fillMaxWidth()) {
-        AsyncImage(model = user.avatarUrl, contentDescription = "user_icon")
+        AsyncImage(
+            model = user.avatarUrl,
+            contentDescription = "user_icon",
+            modifier = Modifier
+                .size(100.dp)
+                .border(BorderStroke(2.dp, color = Color.Red))
+        )
         Spacer(modifier = Modifier.width(8.dp))
-        Column {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Text(
-                text = stringResource(id = R.string.hello_username, user.name)
+                text = stringResource(id = R.string.hello_username, user.name),
+                textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -105,7 +121,7 @@ fun PromotionsBlock(
     userPromotions: List<UserPromotion>,
     activatePromo: (Long) -> Unit
 ) {
-    LazyRow(modifier = Modifier.fillMaxWidth()) {
+    LazyRow(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
         items(userPromotions.size) {
             PromotionsItem(
                 userPromotion = userPromotions[it],
@@ -120,18 +136,26 @@ fun PromotionsItem(
     userPromotion: UserPromotion,
     activatePromo: (Long) -> Unit
 ) {
-    var showPromoDelails by remember { mutableStateOf(false) }
-    val cardHeight by remember { derivedStateOf { if (showPromoDelails) 180.dp else 100.dp } }
+    var showPromoDetails by remember { mutableStateOf(false) }
+    val cardHeight by remember { derivedStateOf { if (showPromoDetails) 180.dp else 100.dp } }
     // TODO Подумать как сделать высоту карточки размером с высоту LazyRow родительского
     Card(
         modifier = Modifier.size(width = 280.dp, height = cardHeight)
     ) {
         Column {
-            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(8.dp)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .background(color = Color.LightGray)
+                    .padding(8.dp)
+            ) {
                 AsyncImage(
                     model = userPromotion.imageUrl
                         ?: painterResource(id = R.drawable.map_pointer_easysushi),
-                    contentDescription = "promo_image"
+                    contentDescription = "promo_image",
+                    modifier = Modifier
+                        .size(100.dp)
+                        .clip(RoundedCornerShape(10.dp))
                 )
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -154,14 +178,25 @@ fun PromotionsItem(
                         color = Color.Black,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { showPromoDelails = !showPromoDelails }
+                            .clickable { showPromoDetails = !showPromoDetails }
                     )
                 }
             }
-            AnimatedVisibility(visible = showPromoDelails) {
+            AnimatedVisibility(
+                visible = showPromoDetails,
+                enter = scaleIn(
+                    spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                )
+            ) {
                 Divider(modifier = Modifier.fillMaxWidth())
                 Box(
-                    modifier = Modifier.fillMaxSize().padding(8.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = Color.Cyan)
+                        .padding(8.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(

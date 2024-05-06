@@ -10,17 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.easysushi.EasySushiScreen
 import com.example.easysushi.R
 import com.example.easysushi.ui.LocalRootNavController
+import com.example.easysushi.ui.theme.EasySushiColors
 
-private val SPLASH_ICON_SIZE = 180.dp
+private val SPLASH_ICON_SIZE = 245.dp
 
 @Composable
 fun SplashScreen(
@@ -36,13 +34,13 @@ fun SplashScreen(
             navController.navigate(EasySushiScreen.Main.route)
         }
     } else {
-        Surface(color = Color.Transparent) {
+        Surface(color = EasySushiColors.Green) {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.easy_sushi_logo),
+                    painter = painterResource(id = R.drawable.logo),
                     modifier = Modifier
                         .size(SPLASH_ICON_SIZE),
                     contentDescription = "Splash screen",
