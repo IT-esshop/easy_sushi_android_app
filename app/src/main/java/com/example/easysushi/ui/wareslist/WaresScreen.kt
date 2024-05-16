@@ -1,6 +1,7 @@
 package com.example.easysushi.ui.wareslist
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,12 +16,16 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -28,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -60,18 +66,48 @@ fun WaresScreen(
     WaresScreenContent(waresList)
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 private fun WaresScreenContent(
     waresList: List<Ware>
 ) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                elevation = 4.dp,
+                backgroundColor = EasySushiColors.Green,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "title logo",
+                    modifier = Modifier.size(width = 130.dp, height = 30.dp)
+                )
+            }
+        },
+        floatingActionButton = {
+            Button(
+                onClick = { /*TODO*/ },
+                shape = CircleShape,
+                modifier = Modifier.size(45.dp),
+                contentPadding = PaddingValues(4.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = EasySushiColors.DarkYellow),
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.icon_cart),
+                    contentDescription = ""
+                )
+            }
+        }
     ) {
-        items(waresList) { ware ->
-            ItemWare(ware = ware)
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2)
+        ) {
+            items(waresList) { ware ->
+                ItemWare(ware = ware)
+            }
         }
     }
-
 }
 
 @Composable
