@@ -15,4 +15,8 @@
     <string name="we_wish_you_a_great_day">Желаем вам прекрасного дня</string>
     <string name="active_points">Очки кэшбека</string>
     <string name="activate_promo">Активировать</string>
+    <string name="ware_price_title">%s ₽</string>
+    <string name="ware_weight_title">%s г.</string>
+    <string name="add_into_cart">В корзину</string>
+
 </resources>
