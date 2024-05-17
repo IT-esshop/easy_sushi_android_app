@@ -23,14 +23,14 @@ val Typography = Typography(
         fontFamily = gothamFontMedium,
         fontWeight = FontWeight(500),
         fontSize = 16.sp,
-        color = EasySushiColors.black,
+        color = EasySushiColors.Black,
         letterSpacing = TextUnit(value = 0f, type = TextUnitType.Sp)
     ),
     body2 = TextStyle(
         fontFamily = gothamFontBook,
         fontWeight = FontWeight(400),
         fontSize = 16.sp,
-        color = EasySushiColors.black,
+        color = EasySushiColors.Black,
         letterSpacing = TextUnit(value = 0f, type = TextUnitType.Sp)
     )
 )
